@@ -1,0 +1,116 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/XoloniumSpecial.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Util/ButtonPress.gd" type="Script" id=2]
+[ext_resource path="res://Pages/Controls.gd" type="Script" id=3]
+[ext_resource path="res://Assets/XoloniumNormal.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Assets/XoloniumBold.tres" type="DynamicFont" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.133333, 0.137255, 0.176471, 0.980392 )
+
+[node name="Controls" type="Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -640.0
+margin_top = -104.0
+margin_right = 640.0
+script = ExtResource( 3 )
+
+[node name="ItemPanel" type="Panel" parent="."]
+visible = false
+show_behind_parent = true
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -533.0
+margin_top = -596.0
+margin_bottom = 104.0
+rect_pivot_offset = Vector2( 540, 600 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="Label" type="RichTextLabel" parent="ItemPanel"]
+margin_left = 49.0
+margin_top = 30.0
+margin_right = 491.0
+margin_bottom = 570.0
+custom_colors/default_color = Color( 1, 0.654902, 0, 1 )
+custom_fonts/bold_font = ExtResource( 4 )
+custom_fonts/normal_font = ExtResource( 5 )
+bbcode_enabled = true
+
+[node name="Back" type="Button" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 27.0
+margin_top = -25.0
+margin_right = 228.0
+margin_bottom = 33.0
+custom_colors/font_color_focus = Color( 1, 0.8, 0.423529, 1 )
+custom_colors/font_color = Color( 1, 0.654902, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 0.8, 0.423529, 1 )
+custom_colors/font_color_pressed = Color( 0.870588, 0.427451, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "< Back"
+
+[node name="Menu" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -29.0
+margin_right = 100.0
+margin_bottom = 29.0
+custom_colors/font_color_focus = Color( 1, 0.8, 0.423529, 1 )
+custom_colors/font_color = Color( 1, 0.654902, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 0.8, 0.423529, 1 )
+custom_colors/font_color_pressed = Color( 0.870588, 0.427451, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Menu"
+script = ExtResource( 2 )
+button_name = "menu"
+load_scene = "res://Story/MainMenu.tscn"
+
+[node name="Items" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -294.0
+margin_top = -25.0
+margin_right = -24.0
+margin_bottom = 33.0
+custom_colors/font_color_focus = Color( 1, 0.8, 0.423529, 1 )
+custom_colors/font_color = Color( 1, 0.654902, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 0.8, 0.423529, 1 )
+custom_colors/font_color_pressed = Color( 0.870588, 0.427451, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Items: 0"
+
+[node name="Skip" type="CheckButton" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -365.0
+margin_top = -29.0
+margin_right = -26.0
+margin_bottom = 31.0
+custom_colors/font_color_focus = Color( 1, 0.654902, 0, 1 )
+custom_colors/font_color_hover_pressed = Color( 0.870588, 0.427451, 0, 1 )
+custom_colors/font_color = Color( 1, 0.654902, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 0.654902, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.654902, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Skip Anims"
+
+[connection signal="mouse_entered" from="ItemPanel" to="." method="_on_ItemPanel_mouse_entered"]
+[connection signal="mouse_exited" from="ItemPanel" to="." method="_on_ItemPanel_mouse_exited"]
+[connection signal="meta_clicked" from="ItemPanel/Label" to="." method="_on_Label_meta_clicked"]
+[connection signal="mouse_entered" from="ItemPanel/Label" to="." method="_on_Label_mouse_entered"]
+[connection signal="mouse_exited" from="ItemPanel/Label" to="." method="_on_Label_mouse_exited"]
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Items" to="." method="_on_Items_pressed"]

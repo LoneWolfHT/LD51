@@ -1,11 +1,15 @@
 extends Node
 
-export var setting = {
+var setting = {
 	"audio_volume_shift": 0,
 	"window_maximized"  : true,
 	"window_dimensions" : OS.window_size,
 	"window_position"   : OS.window_position,
+	"story_path"        : [ "{ \"page\": 1 }" ],
+	"current_page"      : { "page": 1 },
+	"items"             : PoolStringArray(),
 }
+var setting_default = setting.duplicate(true)
 
 const FILEPATH = "user://settings.json"
 var file = File.new()
@@ -35,8 +39,12 @@ func _save_window_values():
 
 	update()
 
-func update():
+func update(reset: bool = false):
 	file.open(FILEPATH, File.WRITE)
+
+	if reset:
+		setting = setting_default.duplicate(true)
+		print("Settings Cleared")
 
 	file.store_var(setting)
 
@@ -53,5 +61,6 @@ func load_from_file():
 	file.close()
 
 	# Outdated setting files will only update what they contain
-	for k in save:
-		setting[k] = save[k]
+	if save:
+		for k in save:
+			setting[k] = save[k]
