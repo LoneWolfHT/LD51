@@ -10,9 +10,12 @@ config_version=4
 
 [application]
 
-config/name="LD51"
+config/name="Trick or Retreat 3.10"
 run/main_scene="res://Story/MainMenu.tscn"
+boot_splash/image="res://Assets/MainMenu.png"
+boot_splash/use_filter=false
 config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
